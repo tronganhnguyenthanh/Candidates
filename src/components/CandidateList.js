@@ -12,7 +12,6 @@ const CandidateList = () => {
     "Content-Type": "application/json"
    }
    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
-   console.log(res?.data?.results)
    setCandidateList(res?.data?.results)
   }
   return (
