@@ -1,6 +1,10 @@
 import axios from "axios"
 import React, {useState} from "react"
+import {useNavigate} from "react-router-dom"
+import {ToastContainer, toast} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 const FormAdd = () => {
+  const navigate = useNavigate()
   const init_data = {
     Firstname:"",
     Lastname:"",
@@ -16,26 +20,67 @@ const FormAdd = () => {
    setCandidate(newCandidate)
   }
   const handleAddCandidate = async () => {
-    let candidates = {
-     Firstname:candidate?.Firstname,
-     Lastname:candidate?.Lastname,
-     Email:candidate?.Email,
-     phoneNumber:candidate?.phoneNumber,
-     workExperience:candidate?.workExperience,
-     major:candidate?.major
+    try{
+     let candidates = {
+      Firstname:candidate?.Firstname,
+      Lastname:candidate?.Lastname,
+      Email:candidate?.Email,
+      phoneNumber:candidate?.phoneNumber,
+      workExperience:candidate?.workExperience,
+      major:candidate?.major
+     }
+  
+     let header = {
+      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
+      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
+      "Content-Type": "application/json", 
     }
-    let res = await axios.post("https://parseapi.back4app.com/classes/Portfolio", {
-      headers:{
-        "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-        "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-        "Content-Type":"application/json"
-      },
-      candidates
-    })
-    console.log("add", res?.data)
+    // Validation form
+    if(candidate.Firstname === ""){
+     toast.error("Please enter your firstname", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.Lastname === ""){
+     toast.error("Please enter your lastname", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.Email === ""){
+     toast.error("Please enter your email", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.phoneNumber === ""){
+     toast.error("Please enter your phone number", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.phoneNumber < 10){
+     toast.error("Your phone number must be at least 10 digits", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.workExperience === ""){
+     toast.error("Please enter your work experience", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.major === ""){
+     toast.error("Please enter your major", {position:"top-center"})
+     return false
+    }else{
+      await axios.post("https://parseapi.back4app.com/classes/Portfolio", candidates, {headers: header})
+      navigate("/candidates/list")
+      return true 
+    }
+    }catch(error){
+      console.log(error?.message)
+    }
   }
   return (
    <form className="max-w-sm mx-auto mt-1 border-solid border-2 border-gray-100 p-2 rounded bg-purple-300">
+     <ToastContainer/>
      <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Firstname</label>
        <input 
@@ -79,12 +124,20 @@ const FormAdd = () => {
     </div>
     <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Work experience</label>
-       <textarea
-         rows={9}
+       <input
+         type="number"
          name="workExperience"
          value={candidate?.workExperience}
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Work experience"
          onChange={handleOnChange}
+      />
+    </div>
+    <div className="mb-5">
+      <label className="block mb-2 text-sm font-medium text-white dark:text-white">Responsibilities</label>
+      <textarea
+        rows={9} 
+        cols={42}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
     </div>
     <div className="mb-5">
