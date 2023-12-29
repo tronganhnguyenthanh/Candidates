@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
+import "./css/style.css"
 import App from "./app/App"
 import reportWebVitals from "./reportWebVitals"
 import "react-toastify/dist/ReactToastify.css"
