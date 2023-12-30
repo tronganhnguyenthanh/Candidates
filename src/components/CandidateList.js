@@ -2,9 +2,10 @@ import axios from "axios"
 import {Button} from "flowbite-react"
 import moment from "moment"
 import React, {useEffect, useState} from "react"
-import { Link } from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
+  const navigate = useNavigate()
   useEffect(() => {
    getCandidateList()
   },[])
@@ -17,10 +18,16 @@ const CandidateList = () => {
    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
    setCandidateList(res?.data?.results)
   }
+  const goBack = () => {
+    navigate("/")
+  }
   return (
    <div className="p-2">
      <h1 className="text-2xl text-center text-blue-700">Candidates list</h1>
-     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+     <div className="flex justify-end">
+       <Button className="bg-blue-800 w-28" onClick={goBack}>Go back</Button>
+     </div>
+     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-1">
        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
          <tr>
            <th scope="col" className="px-6 py-3 text-center bg-red-400 text-white">
@@ -50,7 +57,7 @@ const CandidateList = () => {
          </tr>
        </thead>
        <tbody>
-         {candidateList?.length > 0 && candidateList?.map((i, index) => { 
+          {candidateList?.length > 0 && candidateList?.map((i, index) => { 
            return(
             <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
               <td className="px-3 py-6 text-center bg-purple-300 text-white border-b-2">
@@ -82,8 +89,8 @@ const CandidateList = () => {
               </td>
             </tr>
            )
-          })
-         }
+           })
+          }
        </tbody>
      </table>
    </div>

@@ -44,10 +44,16 @@ const CandidateDetail = () => {
               Work experience: <span className="text-blue-600">{candidateDetail?.workExperience}</span>
             </p>
             <p className="text-slate-500 font-medium">
+              Responsibility: <span className="font-bold text-purple-500">{candidateDetail?.resPonsibility}</span>
+            </p>
+            <p className="text-slate-500 font-medium">
+              Skills: <span className="text-blue-600 font-bold">{candidateDetail?.Skills}</span>
+            </p>
+            <p className="text-slate-500 font-medium">
               Position: <span className="text-blue-600">{candidateDetail?.major}</span>
             </p>
            </div>
-           <Button color="blue" onClick={goBack}>Back</Button>
+           <Button color="blue" onClick={goBack} className="w-28">Back</Button>
         </div>
      </div>
     )

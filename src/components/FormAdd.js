@@ -11,7 +11,7 @@ const FormAdd = () => {
     Email:"",
     phoneNumber:"",
     workExperience:"",
-    Responsibility:"",
+    resPonsibility:"",
     Skills:"",
     major:""
   }
@@ -29,6 +29,8 @@ const FormAdd = () => {
       Email:candidate?.Email,
       phoneNumber:candidate?.phoneNumber,
       workExperience:candidate?.workExperience,
+      resPonsibility:candidate?.resPonsibility,
+      Skills:candidate?.Skills,
       major:candidate?.major
      }
   
@@ -68,6 +70,16 @@ const FormAdd = () => {
      return false
     }
 
+    if(candidate.resPonsibility === ""){
+     toast.error("Please enter your responsibility", {position:"top-center"})
+     return false
+    }
+
+    if(candidate.Skills === ""){
+     toast.error("Please enter your skills", {position:"top-center"})
+     return false
+    }
+
     if(candidate.major === ""){
      toast.error("Please enter your major", {position:"top-center"})
      return false
@@ -82,8 +94,8 @@ const FormAdd = () => {
   }
   return (
    <form className="max-w-sm mx-auto mt-1 border-solid border-2 border-gray-100 p-2 rounded bg-purple-300">
-     <ToastContainer/>
-     <div className="mb-5">
+      <ToastContainer/>
+      <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Firstname</label>
        <input 
          type="text"
@@ -92,8 +104,8 @@ const FormAdd = () => {
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Firstname"
          onChange={handleOnChange}
        />
-     </div>
-     <div className="mb-5">
+      </div>
+      <div className="mb-5">
         <label className="block mb-2 text-sm font-medium text-white dark:text-white">Lastname</label>
          <input 
            type="text"
@@ -102,8 +114,8 @@ const FormAdd = () => {
            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lastname"
            onChange={handleOnChange}
          />
-    </div>
-    <div className="mb-5">
+     </div>
+     <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Email</label>
        <input 
          type="text"
@@ -113,8 +125,8 @@ const FormAdd = () => {
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
          onChange={handleOnChange}
         />
-    </div>
-    <div className="mb-5">
+     </div>
+     <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Phone number</label>
        <input 
         type="text"
@@ -123,8 +135,8 @@ const FormAdd = () => {
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="phoneNumber"
         onChange={handleOnChange}
        />
-    </div>
-    <div className="mb-5">
+     </div>
+     <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Work experience</label>
        <input
          type="number"
@@ -133,8 +145,29 @@ const FormAdd = () => {
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Work experience"
          onChange={handleOnChange}
       />
-    </div>
-    <div className="mb-5">
+     </div>
+     <div className="mb-5">
+      <label className="block mb-2 text-sm font-medium text-white dark:text-white">Responsibility</label>
+      <textarea
+        cols={42}
+        rows={9}
+        name="resPonsibility"
+        value={candidate.resPonsibility}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        onChange={handleOnChange}
+      />
+     </div>
+     <div className="mb-5">
+      <label className="block mb-2 text-sm font-medium text-white dark:text-white">Skills</label>
+      <input
+        type="text"
+        name="Skills"
+        value={candidate?.Skills}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skills"
+        onChange={handleOnChange}
+       />
+     </div>
+     <div className="mb-5">
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Major</label>
        <input
          type="text"
@@ -143,8 +176,8 @@ const FormAdd = () => {
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Position"
          onChange={handleOnChange}
        />
-    </div>
-    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleAddCandidate}>Submit</button>
+     </div>
+     <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleAddCandidate}>Submit</button>
    </form>
   )
 }
