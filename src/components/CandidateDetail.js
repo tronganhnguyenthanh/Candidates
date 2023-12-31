@@ -35,10 +35,16 @@ const CandidateDetail = () => {
               Lastname: <span className="text-blue-600">{candidateDetail?.Lastname}</span>
             </p>
             <p className="text-slate-500 font-semibold">
-              Email: <span className="text-blue-600">{candidateDetail?.Email}</span>
+              Email: 
+               <span className="text-blue-600">
+                 <a href={`mailto:${candidateDetail?.Email}`}>{candidateDetail?.Email}</a>
+               </span>
             </p>
             <p className="text-slate-500 font-medium">
-              Phone number: <span className="text-blue-600">{candidateDetail?.phoneNumber}</span>
+              Phone number: 
+              <span className="text-blue-600">
+                <a href={`tel:${candidateDetail?.phoneNumber}`}>{candidateDetail?.phoneNumber}</a>
+              </span>
             </p>
             <p className="text-slate-500 font-medium">
               Work experience: <span className="text-blue-600">{candidateDetail?.workExperience}</span>
