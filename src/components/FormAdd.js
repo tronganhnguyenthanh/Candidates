@@ -74,7 +74,7 @@ const FormAdd = () => {
      toast.error("Please enter your responsibility", {position:"top-center"})
      return false
     }
-
+    
     if(candidate.Skills === ""){
      toast.error("Please enter your skills", {position:"top-center"})
      return false
