@@ -73,25 +73,25 @@ const CandidateList = () => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-1">
        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
          <tr>
-           <th scope="col" className="px-6 py-3 text-center bg-red-400 text-white">
+           <th scope="col" className="px-6 py-3 text-center bg-red-400 text-white whitespace-nowrap">
              Firstname
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-blue-400 text-white">
+           <th scope="col" className="px-6 py-3 text-center bg-blue-400 text-white whitespace-nowrap">
              Lastname
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-purple-400 text-white">
+           <th scope="col" className="px-6 py-3 text-center bg-purple-400 text-white whitespace-nowrap">
              Email
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-pink-400 text-white text-nowrap">
+           <th scope="col" className="px-6 py-3 text-center bg-pink-400 text-white whitespace-nowrap">
              Phone number
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-violet-400 text-white text-nowrap">
+           <th scope="col" className="px-6 py-3 text-center bg-violet-400 text-white whitespace-nowrap">
              Work experience
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-purple-900 text-white">
+           <th scope="col" className="px-6 py-3 text-center bg-purple-900 text-white whitespace-nowrap">
              Position
            </th>
-           <th scope="col" className="px-6 py-3 text-center bg-purple-300 text-white">
+           <th scope="col" className="px-6 py-3 text-center bg-purple-300 text-white whitespace-nowrap">
              Action
            </th>
          </tr>
