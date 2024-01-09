@@ -68,9 +68,6 @@ const CandidateList = () => {
        <Button className="bg-orange-800 w-28" onClick={restoreCandidateList}>Restore</Button>
        <Button className="bg-blue-800 w-28" onClick={goBack}>Go back</Button>
      </div>
-     <div className="flex justify-end p-2">
-       {candidateList?.length > 0 ? <h1 className="text-gray-500">Show {candidateList?.length} results</h1> : <h1 className="text-blue-700">{filterMajor?.length}</h1>}
-     </div>
      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <ToastContainer/>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-1">

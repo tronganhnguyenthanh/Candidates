@@ -6,6 +6,7 @@ const CandidateDetail = () => {
     const {objectId} = useParams()
     const navigate = useNavigate()
     const [candidateDetail, setCandidateDetail] = useState({})
+    const {Email, Firstname, Lastname, phoneNumber, workExperience, resPonsibility, Skills, major} = candidateDetail
     useEffect(() => {
      getCandidateDetail(objectId)
     }, [objectId])
@@ -29,34 +30,34 @@ const CandidateDetail = () => {
               ObjectId: <span className="text-blue-600">{objectId}</span>
             </p>
             <p className="text-slate-500 font-semibold">
-              Firstname: <span className="text-blue-600">{candidateDetail?.Firstname}</span>
+              Firstname: <span className="text-blue-600">{Firstname}</span>
             </p>
             <p className="text-slate-500 font-semibold">
-              Lastname: <span className="text-blue-600">{candidateDetail?.Lastname}</span>
+              Lastname: <span className="text-blue-600">{Lastname}</span>
             </p>
             <p className="text-slate-500 font-semibold">
               Email: 
                <span className="text-blue-600">
-                 <a href={`mailto:${candidateDetail?.Email}`}>{candidateDetail?.Email}</a>
+                 <a href={`mailto:${Email}`}>{Email}</a>
                </span>
             </p>
             <p className="text-slate-500 font-medium">
               Phone number: 
               <span className="text-blue-600">
-                <a href={`tel:${candidateDetail?.phoneNumber}`}>{candidateDetail?.phoneNumber}</a>
+                <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
               </span>
             </p>
             <p className="text-slate-500 font-medium">
-              Work experience: <span className="text-blue-600">{candidateDetail?.workExperience}</span>
+              Work experience: <span className="text-blue-600">{workExperience}</span>
             </p>
             <p className="text-slate-500 font-medium">
-              Responsibility: <span className="font-bold text-purple-500">{candidateDetail?.resPonsibility}</span>
+              Responsibility: <span className="font-bold text-purple-500">{resPonsibility}</span>
             </p>
             <p className="text-slate-500 font-medium">
-              Skills: <span className="text-blue-600 font-bold">{candidateDetail?.Skills}</span>
+              Skills: <span className="text-blue-600 font-bold">{Skills}</span>
             </p>
             <p className="text-slate-500 font-medium">
-              Position: <span className="text-blue-600">{candidateDetail?.major}</span>
+              Position: <span className="text-blue-600">{major}</span>
             </p>
            </div>
            <Button color="blue" onClick={goBack} className="w-28">Back</Button>
