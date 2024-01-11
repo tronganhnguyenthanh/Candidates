@@ -97,28 +97,28 @@ const CandidateList = () => {
          </tr>
        </thead>
        <tbody>
-          {candidateList?.length > 0 && candidateList?.map((i, index) => { 
+         {candidateList?.length > 0 && candidateList?.map((i, index) => { 
            return(
             <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
-              <td className="px-3 py-6 text-center bg-purple-300 text-white border-b-2">
+              <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
                 {i?.Firstname}
               </td>
-              <td className="px-3 py-6 text-center bg-teal-300 text-white text-nowrap border-b-2">
+              <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
                 {i?.Lastname}
               </td>
-              <td className="px-3 py-6 text-center bg-indigo-300 text-white border-b-2">
+              <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
                 {i?.Email}
               </td>
-              <td className="px-3 py-6 text-center bg-gray-400 text-white border-b-2">
+              <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
                 {i?.phoneNumber}
               </td>
-              <td className="px-3 py-6 text-center bg-green-500 text-white border-b-2">
+              <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
                 {i?.workExperience}
               </td>
-              <td className="px-3 py-6 text-center bg-green-300 text-white text-nowrap border-b-2">
+              <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
                 {i?.major}
               </td>
-              <td className="px-3 py-6 text-center bg-red-300 text-white text-nowrap border-b-2 flex">
+              <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
                 <Link to={`/candidate/${i?.objectId}`}>
                   <Button color="blue" className="w-20 m-2">View</Button>
                 </Link>
