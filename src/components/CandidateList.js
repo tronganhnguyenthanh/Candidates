@@ -101,22 +101,22 @@ const CandidateList = () => {
            return(
             <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
               <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
-                {i?.Firstname}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.Firstname}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
-                {i?.Lastname}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.Lastname}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
-                {i?.Email}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.Email}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
-                {i?.phoneNumber}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
-                {i?.workExperience}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
-                {i?.major}
+                <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
               </td>
               <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
                 <Link to={`/candidate/${i?.objectId}`}>
