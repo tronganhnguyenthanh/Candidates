@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, Suspense} from "react"
 import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios"
 import {Button} from "flowbite-react"
+import LoadingContent from "./LoadingContent"
 const CandidateDetail = () => {
     const {objectId} = useParams()
     const navigate = useNavigate()
@@ -23,7 +24,8 @@ const CandidateDetail = () => {
       setCandidateDetail(res?.data)
     }
     return (
-     <div className="py-8 px-8 max-w-auto sm:max-w-auto mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+     <Suspense fallback={<LoadingContent/>}>
+       <div className="py-8 px-8 max-w-auto sm:max-w-auto mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
         <div className="text-center space-y-2 sm:text-left">
           <div className="space-y-0.5">
             <p className="text-slate-500 font-semibold">
@@ -62,7 +64,8 @@ const CandidateDetail = () => {
            </div>
            <Button color="blue" onClick={goBack} className="w-28">Back</Button>
         </div>
-     </div>
+       </div>
+     </Suspense>
     )
 }
 
