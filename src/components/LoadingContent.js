@@ -1,9 +1,7 @@
 import React from "react"
 const LoadingContent = () => {
-  return (
-   <div className="text-blue-400">
-     Loading
-   </div>
+  return(
+   <h1 className="text-2xl text-blue-500">Loading...</h1>
   )
 }
 

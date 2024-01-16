@@ -1,6 +1,6 @@
-import React, {Suspense} from "react"
+import React, {Suspense, lazy} from "react"
 import LoadingContent from "./LoadingContent"
-import CandidateList from "./CandidateList"
+const CandidateList = lazy(() => import("../components/CandidateList"))
 const LoadingList = () => {
   return (
    <Suspense fallback={<LoadingContent/>}>
