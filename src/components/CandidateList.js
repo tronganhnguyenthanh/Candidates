@@ -1,8 +1,10 @@
 import axios from "axios"
 import { Button, TextInput } from "flowbite-react"
-import React, {useEffect, useState } from "react"
+import React, { lazy, useEffect, useState } from "react"
+import { Suspense } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
+const LoadingComponent = lazy(() => import("../components/LoadingContent"))
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
@@ -97,38 +99,38 @@ const CandidateList = () => {
             </tr>
           </thead>
           <tbody>
-             {candidateList?.length > 0 && candidateList?.map((i, index) => {
-                return (
-                  <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
-                    <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.Firstname}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.Lastname}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.Email}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
-                      <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
-                    </td>
-                    <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
-                      <Link to={`/candidate/${i?.objectId}`}>
-                        <Button color="blue" className="w-20 m-2">View</Button>
-                      </Link>
-                      <Button color="gray" className="w-20 m-2" onClick={() => handleEdit(i?.objectId)}>Edit</Button>
-                      <Button className="w-20 m-2 bg-red-800" onClick={() => handleDelete(i?.objectId)}>Delete</Button>
-                    </td>
-                  </tr>
-                )
-              })
-              }
+            {candidateList?.length > 0 && candidateList?.map((i, index) => {
+              return (
+                <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
+                  <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.Firstname}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.Lastname}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.Email}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
+                    <Link to={`/candidate/${i?.objectId}`}>
+                      <Button color="blue" className="w-20 m-2">View</Button>
+                    </Link>
+                    <Button color="gray" className="w-20 m-2" onClick={() => handleEdit(i?.objectId)}>Edit</Button>
+                    <Button className="w-20 m-2 bg-red-800" onClick={() => handleDelete(i?.objectId)}>Delete</Button>
+                  </td>
+                </tr>
+              )
+            })
+            }
           </tbody>
         </table>
       </div>
