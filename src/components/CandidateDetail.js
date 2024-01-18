@@ -7,7 +7,6 @@ const CandidateDetail = () => {
     const navigate = useNavigate()
     const [candidateDetail, setCandidateDetail] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    // console.log("loading", isLoading)
     const {Email, Firstname, Lastname, phoneNumber, workExperience, resPonsibility, Skills, major} = candidateDetail
     useEffect(() => {
      getCandidateDetail(objectId)

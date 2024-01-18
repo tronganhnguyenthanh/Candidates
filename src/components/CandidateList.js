@@ -1,17 +1,16 @@
 import axios from "axios"
-import { Button, TextInput } from "flowbite-react"
-import React, { lazy, useEffect, useState } from "react"
-import { Suspense } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { ToastContainer, toast } from "react-toastify"
-const LoadingComponent = lazy(() => import("../components/LoadingContent"))
+import {Button, TextInput} from "flowbite-react"
+import React, {useEffect, useState} from "react"
+import {Link, useNavigate} from "react-router-dom"
+import {ToastContainer, toast} from "react-toastify"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   useEffect(() => {
-    getCandidateList()
-  }, [])
+   getCandidateList()
+  },[])
   const getCandidateList = async () => {
     let header = {
       "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
@@ -21,6 +20,7 @@ const CandidateList = () => {
 
     let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", { headers: header })
     setCandidateList(res?.data?.results)
+    setIsLoading(!isLoading)
   }
   const goBack = () => {
     navigate("/")
@@ -99,7 +99,11 @@ const CandidateList = () => {
             </tr>
           </thead>
           <tbody>
-            {candidateList?.length > 0 && candidateList?.map((i, index) => {
+            {
+             isLoading 
+             ? <h1 className="text-2xl text-center text-blue-500">Loading...</h1>
+             : 
+             candidateList?.length > 0 && candidateList?.map((i, index) => {
               return (
                 <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
                   <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
