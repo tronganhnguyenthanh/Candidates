@@ -9,7 +9,7 @@ const CandidateDetail = () => {
     const navigate = useNavigate()
     const [candidateDetail, setCandidateDetail] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    const {Email, Firstname, Lastname, phoneNumber, workExperience, resPonsibility, Skills, major} = candidateDetail
+    const {email, firstname, lastname, phoneNumber, workExperience, resPonsibility, skills, major} = candidateDetail
     useEffect(() => {
      getCandidateDetail(objectId)
     }, [objectId])
@@ -33,15 +33,15 @@ const CandidateDetail = () => {
               ObjectId: <span className="text-blue-600">{objectId}</span>
             </p>
             <p className="text-slate-500 font-semibold">
-              Firstname: <span className="text-blue-600">{Firstname}</span>
+              Firstname: <span className="text-blue-600">{firstname}</span>
             </p>
             <p className="text-slate-500 font-semibold">
-              Lastname: <span className="text-blue-600">{Lastname}</span>
+              Lastname: <span className="text-blue-600">{lastname}</span>
             </p>
             <p className="text-slate-500 font-semibold">
               Email: 
                <span className="text-blue-600">
-                 <a href={`mailto:${Email}`}>{Email}</a>
+                 <a href={`mailto:${email}`}>{email}</a>
                </span>
             </p>
             <p className="text-slate-500 font-medium">
@@ -57,7 +57,7 @@ const CandidateDetail = () => {
               Responsibility: <span className="font-bold text-purple-500">{resPonsibility}</span>
             </p>
             <p className="text-slate-500 font-medium">
-              Skills: <span className="text-blue-600 font-bold">{Skills}</span>
+              Skills: <span className="text-blue-600 font-bold">{skills}</span>
             </p>
             <p className="text-slate-500 font-medium">
               Position: <span className="text-blue-600">{major}</span>

@@ -77,6 +77,9 @@ const CandidateList = () => {
               <th scope="col" className="px-6 py-3 text-center bg-pink-400 text-white whitespace-nowrap">
                 Phone number
               </th>
+              <th scope="col" className="px-6 py-3 text-center bg-slate-500 text-white whitespace-nowrap">
+                Facebook UID
+              </th>
               <th scope="col" className="px-6 py-3 text-center bg-violet-400 text-white whitespace-nowrap">
                 Work experience
               </th>
@@ -98,16 +101,19 @@ const CandidateList = () => {
               return (
                 <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
                   <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.Firstname}</Link>
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.firstname}</Link>
                   </td>
                   <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.Lastname}</Link>
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.lastname}</Link>
                   </td>
                   <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.Email}</Link>
+                    <Link to={`/candidate/${i?.objectId}`}>{i?.email}</Link>
                   </td>
                   <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
                     <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
+                  </td>
+                  <td className="px-3 py-6 text-center bg-gray-500 text-white whitespace-nowrap border-b-2">
+                    <a href={`https://www.facebook.com/${i?.facebookUID}`}>{i?.facebookUID}</a>
                   </td>
                   <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
                     <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>

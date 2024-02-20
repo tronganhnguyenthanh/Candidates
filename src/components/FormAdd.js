@@ -7,13 +7,14 @@ import {header} from "./headers/header"
 const FormAdd = () => {
   const navigate = useNavigate()
   const init_data = {
-    Firstname:"",
-    Lastname:"",
-    Email:"",
+    firstname:"",
+    lastname:"",
+    email:"",
     phoneNumber:"",
+    facebookUID:"",
     workExperience:"",
     resPonsibility:"",
-    Skills:"",
+    skills:"",
     major:""
   }
   const [candidate, setCandidate] = useState(init_data)
@@ -25,27 +26,28 @@ const FormAdd = () => {
   const handleAddCandidate = async () => {
     try{
      let candidates = {
-      Firstname:candidate?.Firstname,
-      Lastname:candidate?.Lastname,
-      Email:candidate?.Email,
+      firstname:candidate?.firstname,
+      lastname:candidate?.lastname,
+      email:candidate?.email,
       phoneNumber:candidate?.phoneNumber,
+      facebookUID:candidate?.facebookUID,
       workExperience:candidate?.workExperience,
       resPonsibility:candidate?.resPonsibility,
-      Skills:candidate?.Skills,
+      skills:candidate?.skills,
       major:candidate?.major
      }
     // Validation form
-    if(candidate.Firstname === ""){
+    if(candidate.firstname === ""){
      toast.error("Please enter your firstname", {position:"top-center"})
      return false
     }
 
-    if(candidate.Lastname === ""){
+    if(candidate.lastname === ""){
      toast.error("Please enter your lastname", {position:"top-center"})
      return false
     }
 
-    if(candidate.Email === ""){
+    if(candidate.email === ""){
      toast.error("Please enter your email", {position:"top-center"})
      return false
     }
@@ -54,6 +56,12 @@ const FormAdd = () => {
      toast.error("Please enter your phone number", {position:"top-center"})
      return false
     }
+
+    if(candidate.facebookUID === ""){
+     toast.error("Please enter your facebook uid", {position:"top-center"})
+     return false
+    }
+
 
     if(candidate.phoneNumber < 10){
      toast.error("Your phone number must be at least 10 digits", {position:"top-center"})
@@ -70,7 +78,7 @@ const FormAdd = () => {
      return false
     }
     
-    if(candidate.Skills === ""){
+    if(candidate.skills === ""){
      toast.error("Please enter your skills", {position:"top-center"})
      return false
     }
@@ -94,8 +102,8 @@ const FormAdd = () => {
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Firstname</label>
        <input 
          type="text"
-         name="Firstname"
-         value={candidate?.Firstname}
+         name="firstname"
+         value={candidate?.firstname}
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Firstname"
          onChange={handleOnChange}
        />
@@ -104,8 +112,8 @@ const FormAdd = () => {
         <label className="block mb-2 text-sm font-medium text-white dark:text-white">Lastname</label>
          <input 
            type="text"
-           name="Lastname"
-           value={candidate?.Lastname}
+           name="lastname"
+           value={candidate?.lastname}
            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Lastname"
            onChange={handleOnChange}
          />
@@ -114,8 +122,8 @@ const FormAdd = () => {
        <label className="block mb-2 text-sm font-medium text-white dark:text-white">Email</label>
        <input 
          type="text"
-         name="Email"
-         value={candidate?.Email}
+         name="email"
+         value={candidate?.email}
          placeholder="Email"
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
          onChange={handleOnChange}
@@ -128,6 +136,16 @@ const FormAdd = () => {
         name="phoneNumber"
         value={candidate?.phoneNumber}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="phoneNumber"
+        onChange={handleOnChange}
+       />
+     </div>
+     <div className="mb-5">
+       <label className="block mb-2 text-sm font-medium text-white dark:text-white">Facebook UID</label>
+       <input 
+        type="text"
+        name="facebookUID"
+        value={candidate?.facebookUID}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="FacebookUID"
         onChange={handleOnChange}
        />
      </div>
@@ -159,8 +177,8 @@ const FormAdd = () => {
       <label className="block mb-2 text-sm font-medium text-white dark:text-white">Skills</label>
       <input
         type="text"
-        name="Skills"
-        value={candidate?.Skills}
+        name="skills"
+        value={candidate?.skills}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skills"
         onChange={handleOnChange}
        />
