@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
+import {header} from "./headers/header"
 const FormEdit = () => {
   const {objectId} = useParams()
   const navigate = useNavigate()
@@ -26,11 +27,6 @@ const FormEdit = () => {
    getCandidateDetail(objectId)
   },[objectId])
   const getCandidateDetail = async (objectId) => {
-    let header = {
-      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type": "application/json"
-    }
     let res = await axios.get(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
     setCandidate(res?.data)
   }
@@ -46,12 +42,7 @@ const FormEdit = () => {
        Skills:candidate?.Skills,
        major:candidate?.major
      }
-
-     let header = {
-      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type": "application/json", 
-    }
+  
     if(candidate.Firstname === ""){
       toast.error("Please enter your firstname", {position:"top-center"})
       return false
@@ -96,7 +87,7 @@ const FormEdit = () => {
       toast.error("Please enter your major", {position:"top-center"})
       return false
      }else{
-       await axios.put(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, candidates, {headers: header})
+       await axios.put(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, candidates, {headers:header})
        navigate("/candidates/list")
        return true 
      }

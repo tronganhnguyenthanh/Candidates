@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import {header} from "./headers/header"
+import Loading from "./loading/Loading"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
@@ -31,21 +32,17 @@ const CandidateList = () => {
   }
 
   const restoreCandidateList = async () => {
-    await getCandidateList()
+    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
+    setCandidateList(res?.data?.results)
   }
 
   const handleDelete = async (objectId) => {
     let confirm = window.confirm("Are you sure you want to delete?")
-    let header = {
-      "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type":"application/json"
-    }
-
-    if (confirm) {
-      await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
-      toast.success("Candidate deleted successfully", { position: "top-center" })
-      getCandidateList()
+    if(confirm){
+     await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
+     toast.success("Candidate deleted successfully", {position: "top-center"})
+     window.location.reload(false)
+     getCandidateList()
     }
   }
   return (
@@ -94,7 +91,8 @@ const CandidateList = () => {
           <tbody>
             {
              isLoading 
-             ? <h1 className="text-2xl text-center text-blue-500">Loading...</h1>
+             ? 
+             <Loading/>
              : 
              candidateList?.length > 0 && candidateList?.map((i, index) => {
               return (

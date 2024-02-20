@@ -1,7 +1,9 @@
-import React, {useState, useEffect, Suspense, lazy} from "react"
+import React, {useState, useEffect} from "react"
 import {useNavigate, useParams} from "react-router-dom"
 import axios from "axios"
 import {Button} from "flowbite-react"
+import {header} from "./headers/header"
+import Loading from "./loading/Loading"
 const CandidateDetail = () => {
     const {objectId} = useParams()
     const navigate = useNavigate()
@@ -15,11 +17,6 @@ const CandidateDetail = () => {
      navigate("/candidates/list")
     }
     const getCandidateDetail = async () => {
-      let header = {
-        "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-        "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-        "Content-Type": "application/json"
-      }
       let res = await axios.get(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
       setCandidateDetail(res?.data)
       setIsLoading(!isLoading)
@@ -27,10 +24,7 @@ const CandidateDetail = () => {
     return (
      <>
      {
-      isLoading ?
-       <div className="py-64">
-         <h1 className="text-2xl text-center text-blue-500">Loading...</h1>
-       </div>
+      isLoading ? <Loading/>
       :
       <div className="py-8 px-8 max-w-auto sm:max-w-auto mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
         <div className="text-center space-y-2 sm:text-left">

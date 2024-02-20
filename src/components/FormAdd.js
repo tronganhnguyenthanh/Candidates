@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import {header} from "./headers/header"
 const FormAdd = () => {
   const navigate = useNavigate()
   const init_data = {
@@ -33,12 +34,6 @@ const FormAdd = () => {
       Skills:candidate?.Skills,
       major:candidate?.major
      }
-  
-     let header = {
-      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type": "application/json", 
-    }
     // Validation form
     if(candidate.Firstname === ""){
      toast.error("Please enter your firstname", {position:"top-center"})
@@ -84,7 +79,7 @@ const FormAdd = () => {
      toast.error("Please enter your major", {position:"top-center"})
      return false
     }else{
-      await axios.post("https://parseapi.back4app.com/classes/Portfolio", candidates, {headers: header})
+      await axios.post("https://parseapi.back4app.com/classes/Portfolio", candidates, {headers:header})
       navigate("/candidates/list")
       return true 
     }
