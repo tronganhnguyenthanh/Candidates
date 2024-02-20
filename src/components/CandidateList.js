@@ -3,6 +3,7 @@ import {Button, TextInput} from "flowbite-react"
 import React, {useEffect, useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
+import {header} from "./headers/header"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
@@ -12,13 +13,7 @@ const CandidateList = () => {
    getCandidateList()
   },[])
   const getCandidateList = async () => {
-    let header = {
-      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type": "application/json"
-    }
-
-    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", { headers: header })
+    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
     setCandidateList(res?.data?.results)
     setIsLoading(!isLoading)
   }
@@ -36,21 +31,19 @@ const CandidateList = () => {
   }
 
   const restoreCandidateList = async () => {
-    if (filterMajor === "") {
-      await getCandidateList()
-    }
+    await getCandidateList()
   }
 
   const handleDelete = async (objectId) => {
     let confirm = window.confirm("Are you sure you want to delete?")
     let header = {
-      "X-Parse-Application-Id": "PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
-      "X-Parse-REST-API-Key": "BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
-      "Content-Type": "application/json"
+      "X-Parse-Application-Id":"PpK3SDzdouwf41zij4aWWg01cC4Dir1ihwhDgPwI",
+      "X-Parse-REST-API-Key":"BoxlFY1i2LuosBo0jEMtht1AgqfKKoEjZMlH22GS",
+      "Content-Type":"application/json"
     }
 
     if (confirm) {
-      await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, { headers: header })
+      await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
       toast.success("Candidate deleted successfully", { position: "top-center" })
       getCandidateList()
     }
