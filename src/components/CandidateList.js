@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import {header} from "./headers/header"
 import Loading from "./loading/Loading"
-import {getCandidateListAPI} from "../api/api"
+import {deleteCandidateList, getCandidateListAPI} from "../api/api"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
@@ -40,7 +40,7 @@ const CandidateList = () => {
   const handleDelete = async (objectId) => {
     let confirm = window.confirm("Are you sure you want to delete?")
     if(confirm){
-     await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
+     await deleteCandidateList(objectId)
      toast.success("Candidate deleted successfully", {position: "top-center"})
      window.location.reload(false)
      getCandidateList()

@@ -20,3 +20,8 @@ export const getCandidateDetailAPI = async (objectId) => {
   let listDetail = await axios.get(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
   return listDetail?.data
 }
+// Delete candidate list
+export const deleteCandidateList = async (objectId) => {
+  let del = await axios.delete(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
+  return del?.data
+}
