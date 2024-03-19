@@ -5,6 +5,7 @@ import {Link, useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import {header} from "./headers/header"
 import Loading from "./loading/Loading"
+import {getCandidateListAPI} from "../api/api"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   const [filterMajor, setFilterMajor] = useState("")
@@ -14,8 +15,8 @@ const CandidateList = () => {
    getCandidateList()
   },[])
   const getCandidateList = async () => {
-    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
-    setCandidateList(res?.data?.results)
+    let candidateList = await getCandidateListAPI()
+    setCandidateList(candidateList)
     setIsLoading(!isLoading)
   }
   const goBack = () => {

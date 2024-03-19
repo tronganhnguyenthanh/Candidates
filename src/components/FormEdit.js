@@ -4,6 +4,7 @@ import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
 import {header} from "./headers/header"
+import {updateCandidate} from "../api/api"
 const FormEdit = () => {
   const {objectId} = useParams()
   const navigate = useNavigate()
@@ -94,7 +95,7 @@ const FormEdit = () => {
       toast.error("Please enter your major", {position:"top-center"})
       return false
      }else{
-       await axios.put(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, candidates, {headers:header})
+       await updateCandidate(objectId, candidates)
        navigate("/candidates/list")
        return true 
      }

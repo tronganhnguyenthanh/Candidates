@@ -1,9 +1,8 @@
-import axios from "axios"
 import React, {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import {header} from "./headers/header"
+import {addCandidate} from "../api/api"
 const FormAdd = () => {
   const navigate = useNavigate()
   const init_data = {
@@ -87,7 +86,7 @@ const FormAdd = () => {
      toast.error("Please enter your major", {position:"top-center"})
      return false
     }else{
-      await axios.post("https://parseapi.back4app.com/classes/Portfolio", candidates, {headers:header})
+      await addCandidate(candidates)
       navigate("/candidates/list")
       return true 
     }
