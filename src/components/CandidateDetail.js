@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from "react"
 import {useNavigate, useParams} from "react-router-dom"
-import axios from "axios"
 import {Button} from "flowbite-react"
-import {header} from "./headers/header"
 import Loading from "./loading/Loading"
+import {getCandidateDetailAPI} from "../api/api"
 const CandidateDetail = () => {
     const {objectId} = useParams()
     const navigate = useNavigate()
@@ -17,8 +16,8 @@ const CandidateDetail = () => {
      navigate("/candidates/list")
     }
     const getCandidateDetail = async () => {
-      let res = await axios.get(`https://parseapi.back4app.com/classes/Portfolio/${objectId}`, {headers:header})
-      setCandidateDetail(res?.data)
+      let res = await getCandidateDetailAPI(objectId)
+      setCandidateDetail(res)
       setIsLoading(!isLoading)
     }
     return (
