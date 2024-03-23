@@ -28,7 +28,7 @@ const CandidateList = () => {
   }
 
   const handleOnSearchMajor = () => {
-    let searchrMajor = candidateList?.filter((i) => i?.major?.includes(filterMajor?.toUpperCase()))
+    let searchrMajor = candidateList?.filter((i) => i?.major?.toUpperCase().match(filterMajor?.toUpperCase()))
     setCandidateList(searchrMajor)
   }
 
