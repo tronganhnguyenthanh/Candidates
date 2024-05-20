@@ -6,6 +6,7 @@ import {ToastContainer, toast} from "react-toastify"
 import {header} from "./headers/header"
 import Loading from "./loading/Loading"
 import {deleteCandidateList, getCandidateListAPI} from "../api/api"
+import moment from "moment"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
   console.log(candidateList)
@@ -89,6 +90,9 @@ const CandidateList = () => {
               <th scope="col" className="px-6 py-3 text-center bg-purple-900 text-white whitespace-nowrap">
                 Position
               </th>
+              <th scope="col" className="px-6 py-3 text-center bg-purple-500 text-white whitespace-nowrap">
+                Created date
+              </th>
               <th scope="col" className="px-6 py-3 text-center bg-purple-300 text-white whitespace-nowrap">
                 Action
               </th>
@@ -125,6 +129,9 @@ const CandidateList = () => {
                       </td>
                       <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
                         <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-green-600 text-white whitespace-nowrap border-b-2">
+                        <span>{moment(i?.createdAt).format("DD/MM/YYYY")}</span>
                       </td>
                       <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
                         <Link to={`/candidate/${i?.objectId}`}>
