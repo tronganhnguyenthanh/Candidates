@@ -8,12 +8,13 @@ import Loading from "./loading/Loading"
 import {deleteCandidateList, getCandidateListAPI} from "../api/api"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
+  console.log(candidateList)
   const [filterMajor, setFilterMajor] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   useEffect(() => {
-   getCandidateList()
-  },[])
+    getCandidateList()
+  }, [])
   const getCandidateList = async () => {
     let candidateList = await getCandidateListAPI()
     setCandidateList(candidateList)
@@ -33,19 +34,20 @@ const CandidateList = () => {
   }
 
   const restoreCandidateList = async () => {
-    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", {headers:header})
+    let res = await axios.get("https://parseapi.back4app.com/classes/Portfolio", { headers: header })
     setCandidateList(res?.data?.results)
   }
 
   const handleDelete = async (objectId) => {
     let confirm = window.confirm("Are you sure you want to delete?")
-    if(confirm){
-     await deleteCandidateList(objectId)
-     toast.success("Candidate deleted successfully", {position: "top-center"})
-     window.location.reload(false)
-     getCandidateList()
+    if (confirm) {
+      await deleteCandidateList(objectId)
+      toast.success("Candidate deleted successfully", { position: "top-center" })
+      window.location.reload(false)
+      getCandidateList()
     }
   }
+
   return (
     <div className="p-2">
       <h1 className="text-2xl text-center text-blue-700">Candidates list</h1>
@@ -79,7 +81,7 @@ const CandidateList = () => {
                 Phone number
               </th>
               <th scope="col" className="px-6 py-3 text-center bg-slate-500 text-white whitespace-nowrap">
-                Facebook UID
+                Github link
               </th>
               <th scope="col" className="px-6 py-3 text-center bg-violet-400 text-white whitespace-nowrap">
                 Work experience
@@ -94,44 +96,46 @@ const CandidateList = () => {
           </thead>
           <tbody>
             {
-             isLoading 
-             ? 
-             <Loading/>
-             : 
-             candidateList?.length > 0 && candidateList?.map((i, index) => {
-              return (
-                <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
-                  <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.firstname}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.lastname}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.email}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-gray-500 text-white whitespace-nowrap border-b-2">
-                    <a href={`https://www.facebook.com/${i?.facebookUID}`}>{i?.facebookUID}</a>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
-                    <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
-                  </td>
-                  <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
-                    <Link to={`/candidate/${i?.objectId}`}>
-                      <Button color="blue" className="w-20 m-2">View</Button>
-                    </Link>
-                    <Button color="gray" className="w-20 m-2" onClick={() => handleEdit(i?.objectId)}>Edit</Button>
-                    <Button className="w-20 m-2 bg-red-800" onClick={() => handleDelete(i?.objectId)}>Delete</Button>
-                  </td>
-                </tr>
-              )
-            })
+              isLoading
+                ?
+                <Loading />
+                :
+                candidateList?.length > 0 && candidateList?.map((i, index) => {
+                  return (
+                    <tr className="bg-white border-r-2 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer" key={index}>
+                      <td className="px-3 py-6 text-center bg-purple-300 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.firstname}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.lastname}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.email}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-gray-500 text-white whitespace-nowrap border-b-2">
+                        <Link to={i?.githubLink + "" + i?.githubRepositoryName}>
+                          {i?.githubLink + "" + i?.githubRepositoryName}
+                        </Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.workExperience}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-green-300 text-white whitespace-nowrap border-b-2">
+                        <Link to={`/candidate/${i?.objectId}`}>{i?.major}</Link>
+                      </td>
+                      <td className="px-3 py-6 text-center bg-red-300 text-white whitespace-nowrap border-b-2 flex">
+                        <Link to={`/candidate/${i?.objectId}`}>
+                          <Button color="blue" className="w-20 m-2">View</Button>
+                        </Link>
+                        <Button color="gray" className="w-20 m-2" onClick={() => handleEdit(i?.objectId)}>Edit</Button>
+                        <Button className="w-20 m-2 bg-red-800" onClick={() => handleDelete(i?.objectId)}>Delete</Button>
+                      </td>
+                    </tr>
+                  )
+                })
             }
           </tbody>
         </table>

@@ -13,7 +13,8 @@ const FormEdit = () => {
     lastname:"",
     email:"",
     phoneNumber:"",
-    facebookUID:"",
+    githubLink:"",
+    githubRepositoryName:"",
     workExperience:"",
     resPonsibility:"",
     skills:"",
@@ -39,7 +40,8 @@ const FormEdit = () => {
        lastname:candidate?.lastname,
        email:candidate?.email,
        phoneNumber:candidate?.phoneNumber,
-       facebookUID:candidate?.facebookUID,
+       githubLink:candidate?.githubLink,
+       githubRepositoryName:candidate?.githubRepositoryName,
        workExperience:candidate?.workExperience,
        resPonsibility:candidate?.resPonsibility,
        skills:candidate?.skills,
@@ -71,8 +73,13 @@ const FormEdit = () => {
       return false
      }
 
-     if(candidate.facebookUID === ""){
-      toast.error("Please enter your facebook uid", {position:"top-center"})
+     if(candidate.githubRepositoryName === ""){
+      toast.error("Please provide github repository", {position:"top-center"})
+      return false
+     }
+
+     if(candidate.githubLink === ""){
+      toast.error("Please provide your github link", {position:"top-center"})
       return false
      }
  
@@ -151,13 +158,24 @@ const FormEdit = () => {
        />
      </div>
      <div className="mb-5">
-       <label className="block mb-2 text-sm font-medium text-white dark:text-white">FacebookUID</label>
+       <label className="block mb-2 text-sm font-medium text-white dark:text-white">Github repository name</label>
        <input 
          type="text"
-         name="facebookUID"
+         name="githubRepositoryName"
          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-         placeholder="facebookUID"
-         value={candidate?.facebookUID}
+         placeholder="Github Repo Name"
+         value={candidate?.githubRepositoryName}
+         onChange={handleOnChange}
+       />
+     </div>
+     <div className="mb-5">
+       <label className="block mb-2 text-sm font-medium text-white dark:text-white">Github link</label>
+       <input 
+         type="text"
+         name="githubLink"
+         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+         placeholder="Github Link"
+         value={candidate?.githubLink}
          onChange={handleOnChange}
        />
      </div>
