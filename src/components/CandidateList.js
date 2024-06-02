@@ -9,12 +9,11 @@ import {deleteCandidateList, getCandidateListAPI} from "../api/api"
 import moment from "moment"
 const CandidateList = () => {
   const [candidateList, setCandidateList] = useState([])
-  console.log(candidateList)
   const [filterMajor, setFilterMajor] = useState("")
   const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate()
   useEffect(() => {
-    getCandidateList()
+   getCandidateList()
   }, [])
   const getCandidateList = async () => {
     let candidateList = await getCandidateListAPI()
@@ -75,9 +74,6 @@ const CandidateList = () => {
               <th scope="col" className="px-6 py-3 text-center bg-blue-400 text-white whitespace-nowrap">
                 Lastname
               </th>
-              <th scope="col" className="px-6 py-3 text-center bg-purple-400 text-white whitespace-nowrap">
-                Email
-              </th>
               <th scope="col" className="px-6 py-3 text-center bg-pink-400 text-white whitespace-nowrap">
                 Phone number
               </th>
@@ -112,9 +108,6 @@ const CandidateList = () => {
                       </td>
                       <td className="px-3 py-6 text-center bg-teal-300 text-white whitespace-nowrap border-b-2">
                         <Link to={`/candidate/${i?.objectId}`}>{i?.lastname}</Link>
-                      </td>
-                      <td className="px-3 py-6 text-center bg-indigo-300 text-white whitespace-nowrap border-b-2">
-                        <Link to={`/candidate/${i?.objectId}`}>{i?.email}</Link>
                       </td>
                       <td className="px-3 py-6 text-center bg-gray-400 text-white whitespace-nowrap border-b-2">
                         <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
