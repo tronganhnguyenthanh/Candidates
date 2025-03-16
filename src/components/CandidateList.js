@@ -113,8 +113,8 @@ const CandidateList = () => {
                         <Link to={`/candidate/${i?.objectId}`}>{i?.phoneNumber}</Link>
                       </td>
                       <td className="px-3 py-6 text-center bg-gray-500 text-white whitespace-nowrap border-b-2">
-                        <Link to={i?.githubLink + "" + i?.githubRepositoryName}>
-                          {i?.githubLink + "" + i?.githubRepositoryName}
+                        <Link to={i?.githubLink + "/" + i?.githubRepositoryName}>
+                          {i?.githubLink + "/" + i?.githubRepositoryName}
                         </Link>
                       </td>
                       <td className="px-3 py-6 text-center bg-green-500 text-white whitespace-nowrap border-b-2">
