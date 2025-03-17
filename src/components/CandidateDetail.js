@@ -55,10 +55,10 @@ const CandidateDetail = () => {
                 </p>
                 <p className="text-slate-500 font-medium">
                   Responsibility:
-                  <ul className="list-disc ml-5 font-bold text-purple-500">
+                  <ul className="ml-5 font-bold text-purple-500">
                     {responsibility.split("\n").map((item, index) => (
                       <li key={index}>{item.replace("-", "").trim()}</li>
-                    ))
+                     ))
                     }
                   </ul>
                 </p>
