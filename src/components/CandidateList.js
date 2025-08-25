@@ -1,6 +1,6 @@
 import axios from "axios"
 import {Button, TextInput} from "flowbite-react"
-import React, {useEffect, useState} from "react"
+import {useEffect, useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import {header} from "./headers/header"
@@ -20,7 +20,7 @@ const CandidateList = () => {
     setCandidateList(candidateList)
     setIsLoading(!isLoading)
   }
-  const goBack = () => {
+  const addNewCandidate = () => {
     navigate("/")
   }
 
@@ -61,7 +61,7 @@ const CandidateList = () => {
         />
         <Button className="bg-slate-500 w-28" onClick={handleOnSearchMajor}>Search</Button>
         <Button className="bg-orange-800 w-28" onClick={restoreCandidateList}>Restore</Button>
-        <Button className="bg-blue-800 w-28" onClick={goBack}>Go back</Button>
+        <Button className="bg-blue-800 w-28" onClick={addNewCandidate}>Add new</Button>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <ToastContainer />

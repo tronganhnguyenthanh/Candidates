@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {ToastContainer, toast} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -190,9 +190,6 @@ const FormAdd = () => {
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={handleOnChange}
       />
-      <div className="flex justify-end">
-        <p className="text-blue-500">{`The count of reponsibility is ${candidate.resPonsibility.length}`}</p>
-      </div>
      </div>
      <div className="mb-5">
       <label className="block mb-2 text-sm font-medium text-white dark:text-white">Skills</label>
